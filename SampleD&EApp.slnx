@@ -1,0 +1,11 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="SampleD&amp;EApp/SampleDEApp.csproj" />
+  <Project Path="SetupProject/SetupProject.wixproj" Id="23a072e0-3652-4fc2-a67c-c6163a473144">
+    <Platform Project="x86" />
+    <Build />
+  </Project>
+</Solution>

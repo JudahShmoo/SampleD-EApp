@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="SampleDEApp Setup" Language="1033" Version="1.0.0.0" Manufacturer="Judah Walsh"
+	UpgradeCode="91661DF4-D64C-4FB2-8FBA-C8405AF22D44">
+		
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		
+		<MediaTemplate EmbedCab="yes" />
+		
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SampleDEApp" />
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="My Application Name"/>
+			</Directory>
+		</Directory>
+		
+		
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="MainExecutable" Guid="4C701407-90C5-4F72-AA61-70E324FF1EFF">
+				<File Id="SampleDEAppEXE" Source="$(var.SampleDEApp.TargetDir)SampleDEApp.exe" KeyPath="yes" />
+				<File Id="SampleDEAppDLL" Source="$(var.SampleDEApp.TargetPath)" />
+				<File Id="SampleDEAppRuntimeConfig" Source="$(var.SampleDEApp.TargetDir)SampleDEApp.runtimeconfig.json" />
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="455026AB-F823-4F98-91F0-0AE37ED0CB1C">
+				<Shortcut Id="ApplicationStartMenuShortcut"
+						  Name="Sample Deployment and Evolution App"
+						  Description="A sample app for A1"
+						  Target="[#SampleDEAppEXE]"
+						  WorkingDirectory="INSTALLFOLDER"/>
+				<RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall"/>
+				<RegistryValue Root="HKCU" Key="Software\SwinStudent\SampleDEApp" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+		
+		<Feature Id="ProductFeature" Title="SampleDEAppSetup" Level="1">
+			<ComponentRef Id="MainExecutable" />
+			<ComponentRef Id="ApplicationShortcut" />
+		</Feature>
+		
+	</Product>
+</Wix>
