@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="CustomWFA Installer" Language="1033" Version="1.0.0.0" Manufacturer="Judah" UpgradeCode="67956513-7985-4948-97c1-cd7aa602ba51">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of CustomWFA is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="CustomWFA" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="ShortcutComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="CustomWFA" />
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="CustomWFA"/>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="MainComponent" Guid="9313D793-471D-4CBA-BACB-E707EC8EF14C">
+				<File Id="MainDependnecies" Source="$(var.CustomWFA.TargetDir)CustomWFA.deps.json" />
+				<File Id="MainDll" Source="$(var.CustomWFA.TargetPath)" />
+				<File Id="MainExecutable" Source="$(var.CustomWFA.TargetDir)CustomWFA.exe" KeyPath="yes" />
+				<File Id="MainPdb" Source="$(var.CustomWFA.TargetDir)CustomWFA.pdb" />
+				<File Id="MainRuntimeConfig" Source="$(var.CustomWFA.TargetDir)CustomWFA.runtimeconfig.json" />
+			</Component>
+		</ComponentGroup>
+		<ComponentGroup Id="ShortcutComponents" Directory="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="54D52CC9-3761-4A16-A583-D5267447473E">
+				<Shortcut Id="ApplicationStartMenuShortcut"
+						  Name="CustomWFA"
+						  Description="A sample app for A1"
+						  Target="[#MainExecutable]"
+						  WorkingDirectory="INSTALLFOLDER"/>
+				<RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall"/>
+				<RegistryValue Root="HKCU" Key="Software\SwinStudent\CustomWFA" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

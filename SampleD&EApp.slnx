@@ -3,7 +3,13 @@
     <Platform Name="Any CPU" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="CustomWFA/CustomWFA.csproj" Id="969ffadd-02ac-4f6f-979e-ab9cd794d48c" />
+  <Project Path="DependancyApp/DependancyApp.csproj" Id="04049ae5-335f-4b59-a8af-90951e6753e3" />
   <Project Path="SampleD&amp;EApp/SampleDEApp.csproj" />
+  <Project Path="SetupCustomWFA/SetupCustomWFA.wixproj" Id="57c0f74d-0040-49b4-8094-668164f4aa34">
+    <Platform Project="x86" />
+    <Build />
+  </Project>
   <Project Path="SetupProject/SetupProject.wixproj" Id="23a072e0-3652-4fc2-a67c-c6163a473144">
     <Platform Project="x86" />
     <Build />
