@@ -6,6 +6,10 @@
   <Project Path="CustomWFA/CustomWFA.csproj" Id="969ffadd-02ac-4f6f-979e-ab9cd794d48c" />
   <Project Path="DependancyApp/DependancyApp.csproj" Id="04049ae5-335f-4b59-a8af-90951e6753e3" />
   <Project Path="SampleD&amp;EApp/SampleDEApp.csproj" />
+  <Project Path="Setup Dependancy App/Setup Dependancy App.wixproj" Id="fc2a3132-daa9-4a8e-8606-36d469c8c682">
+    <Platform Project="x86" />
+    <Build />
+  </Project>
   <Project Path="SetupCustomWFA/SetupCustomWFA.wixproj" Id="57c0f74d-0040-49b4-8094-668164f4aa34">
     <Platform Project="x86" />
     <Build />
