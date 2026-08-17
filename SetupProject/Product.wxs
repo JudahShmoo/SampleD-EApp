@@ -12,7 +12,7 @@
 				<Directory Id="INSTALLFOLDER" Name="SampleDEApp" />
 			</Directory>
 			<Directory Id="ProgramMenuFolder">
-				<Directory Id="ApplicationProgramsFolder" Name="My Application Name"/>
+				<Directory Id="ApplicationProgramsFolder" Name="SampleDEApp"/>
 			</Directory>
 		</Directory>
 		
